@@ -111,6 +111,19 @@ public class ProductController {
         }
     }
     
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        log.info("POST /api/products - Creating new product: {}", productDto.getName());
+        try {
+            ProductDto createdProduct = productService.createProduct(productDto);
+            log.info("Successfully created product with id: {}", createdProduct.getId());
+            return ResponseEntity.ok(createdProduct);
+        } catch (Exception e) {
+            log.error("Error creating product: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    
     @GetMapping("/category/{category}")
     public ResponseEntity<List<ProductDto>> getProductsByCategory(@PathVariable String category) {
         log.info("GET /api/products/category/{} - Fetching products by category", category);

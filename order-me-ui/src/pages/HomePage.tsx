@@ -1,16 +1,10 @@
 import React from 'react'
 import { Row, Col, Card, Button, Badge } from 'react-bootstrap'
-import { useQuery } from '@tanstack/react-query'
-import { apiClient } from '../services/api'
-import type { Product } from '../types'
+import { useFeaturedProductsQuery } from '../stores/productStore'
 
 const HomePage: React.FC = () => {
-  // Example query using TanStack Query
-  const { data: featuredProducts, isLoading, error } = useQuery({
-    queryKey: ['featured-products'],
-    queryFn: () => apiClient.get<Product[]>('/products/featured'),
-    staleTime: 1000 * 60 * 10, // 10 minutes
-  })
+  // Use React Query hook for featured products
+  const { data: featuredProducts, isLoading, error } = useFeaturedProductsQuery()
 
   if (isLoading) {
     return (

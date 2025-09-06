@@ -8,6 +8,7 @@ A modern React-based user interface for the OrderMe food ordering application, b
 - **TanStack Query** for efficient data fetching and caching
 - **React Bootstrap** for beautiful, responsive UI components
 - **React Router** for client-side routing
+- **Zustand** for state management
 - **Custom hooks** for API operations
 - **Type-safe** API client with error handling
 - **Utility functions** for common operations
@@ -22,6 +23,7 @@ A modern React-based user interface for the OrderMe food ordering application, b
 - `react-bootstrap` - UI component library
 - `bootstrap` - CSS framework
 - `react-router-dom` - Client-side routing
+- `zustand` - State management
 
 ### Development Dependencies
 - `typescript` ~5.8.3
@@ -33,14 +35,18 @@ A modern React-based user interface for the OrderMe food ordering application, b
 ```
 src/
 ├── components/          # Reusable UI components
+│   └── ProductForm.tsx  # Product creation form
 ├── hooks/              # Custom React hooks
 │   └── useApi.ts      # API query and mutation hooks
 ├── layouts/            # Layout components
 │   └── MainLayout.tsx # Main application layout
 ├── pages/              # Page components
-│   └── HomePage.tsx   # Home page component
+│   ├── HomePage.tsx   # Home page component
+│   └── ProductManagementPage.tsx # Product management page
 ├── services/           # API and external services
 │   └── api.ts         # HTTP client and API methods
+├── stores/             # Zustand state stores
+│   └── productStore.ts # Product state management
 ├── types/              # TypeScript type definitions
 │   └── index.ts       # Application types and interfaces
 ├── utils/              # Utility functions

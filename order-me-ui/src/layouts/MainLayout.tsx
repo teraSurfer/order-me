@@ -31,6 +31,9 @@ const MainLayout: React.FC = () => {
               <Nav.Link as={Link} to="/orders">
                 Orders
               </Nav.Link>
+              <Nav.Link as={Link} to="/products">
+                Products
+              </Nav.Link>
             </Nav>
             {/* <Nav>
               <NavDropdown title="Account" id="basic-nav-dropdown">

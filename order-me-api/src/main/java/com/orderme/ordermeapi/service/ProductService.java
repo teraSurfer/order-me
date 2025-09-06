@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,5 +54,26 @@ public class ProductService {
             log.error("Invalid category: {}", category);
             throw new RuntimeException("Invalid category: " + category);
         }
+    }
+    
+    public ProductDto createProduct(ProductDto productDto) {
+        log.info("Creating new product: {}", productDto.getName());
+        
+        // Create new Product entity
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        product.setCategory(productDto.getCategory());
+        product.setImageUrl(productDto.getImageUrl());
+        product.setIsAvailable(productDto.getIsAvailable() != null ? productDto.getIsAvailable() : true);
+        product.setCreatedAt(LocalDateTime.now());
+        product.setUpdatedAt(LocalDateTime.now());
+        
+        // Save to database
+        Product savedProduct = productRepository.save(product);
+        
+        log.info("Successfully created product with id: {}", savedProduct.getId());
+        return ProductDto.fromEntity(savedProduct);
     }
 }
